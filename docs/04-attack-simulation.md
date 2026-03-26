@@ -22,9 +22,11 @@ powershell.exe -Command "Get-Process"
 Sysmon generates Event ID 1
 Wazuh ingests the process creation event
 
-## Evidence
+### Evidence
 
-![PowerShell Execution](../assets/screenshots/powershell-execution.png)
+[View full image](../assets/screenshots/powershell-execution.png)
+
+![PowerShell Execution](../assets/screenshots/powershots/powershell-execution.png)
 
 Simulation 2: Suspicious Process Chain
 Description
@@ -42,9 +44,9 @@ Child process: powershell.exe
 
 ### Evidence
 
-![Process Chain cmd to PowerShell](../assets/screenshots/process-chain.png)
+[View full image](../assets/screenshots/process-chain.png)
 
-- assets/screenshots/process-chain.png
+![Process Chain cmd to PowerShell](../assets/screenshots/process-chain.png)
 
 ## Simulation 3: certutil Abuse
 
@@ -60,6 +62,8 @@ Sysmon logs execution of certutil
 Command-line arguments visible in event data
 
 ### Evidence
+
+[View full image](../assets/screenshots/certutil-activity.png)
 
 ![certutil Activity](../assets/screenshots/certutil-activity.png)
 
